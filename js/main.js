@@ -26,7 +26,7 @@
       setTimeout(dropIntro, 1200);
     };
     const t0 = performance.now();
-    const go = () => setTimeout(lift, Math.max(0, 1700 - (performance.now() - t0)));
+    const go = () => setTimeout(lift, Math.max(0, 1100 - (performance.now() - t0)));
     if (document.readyState === 'complete') go(); else window.addEventListener('load', go, { once: true });
     setTimeout(lift, 4000);
   } else {
@@ -68,77 +68,11 @@
   else {
     const io = new IntersectionObserver(entries => entries.forEach(en => {
       if (en.isIntersecting) { en.target.classList.add('is-in'); io.unobserve(en.target); }
-    }), { rootMargin: '0px 0px -12% 0px', threshold: 0.05 });
+    }), { rootMargin: '0px 0px 15% 0px', threshold: 0 });
     reveals.forEach(el => io.observe(el));
   }
 
   window.addEventListener('scroll', () => { if (!ticking) { ticking = true; requestAnimationFrame(onScroll); } }, { passive: true });
-
-  /* ---------- Braci (canvas) ---------- */
-  class Embers {
-    constructor(canvas, density) {
-      this.c = canvas; this.ctx = canvas.getContext('2d');
-      this.density = density; this.p = []; this.mouse = { x: -999, y: -999 };
-      this.visible = false; this.resize();
-      window.addEventListener('resize', () => this.resize());
-      const host = canvas.parentElement;
-      host.addEventListener('pointermove', e => { const r = canvas.getBoundingClientRect(); this.mouse.x = e.clientX - r.left; this.mouse.y = e.clientY - r.top; });
-      host.addEventListener('pointerleave', () => { this.mouse.x = this.mouse.y = -999; });
-      new IntersectionObserver(([en]) => { this.visible = en.isIntersecting; if (this.visible) this.loop(); }).observe(canvas);
-    }
-    resize() {
-      const r = this.c.getBoundingClientRect(); this.dpr = Math.min(window.devicePixelRatio || 1, 2);
-      this.w = r.width; this.h = r.height;
-      this.c.width = this.w * this.dpr; this.c.height = this.h * this.dpr;
-      this.max = Math.round(this.w / 1440 * this.density) + 18;
-    }
-    spawn(initial) {
-      return {
-        x: Math.random() * this.w,
-        y: initial ? Math.random() * this.h : this.h + 10,
-        vx: (Math.random() - .5) * .4, vy: -(.5 + Math.random() * 1.4),
-        s: .6 + Math.random() * 2.2, life: 0, max: 220 + Math.random() * 320,
-        hue: 18 + Math.random() * 26, f: Math.random() * 6
-      };
-    }
-    loop() {
-      if (!this.visible || this.running) return;
-      this.running = true;
-      const step = () => {
-        if (!this.visible) { this.running = false; return; }
-        const { ctx } = this;
-        ctx.setTransform(this.dpr, 0, 0, this.dpr, 0, 0);
-        ctx.clearRect(0, 0, this.w, this.h);
-        ctx.globalCompositeOperation = 'lighter';
-        while (this.p.length < this.max) this.p.push(this.spawn(this.p.length < this.max * .5 && !this.started));
-        this.started = true;
-        for (let i = this.p.length - 1; i >= 0; i--) {
-          const q = this.p[i];
-          q.life++; q.f += .15;
-          q.vx += Math.sin(q.life * .03 + q.f) * .012;
-          const dx = q.x - this.mouse.x, dy = q.y - this.mouse.y, d2 = dx * dx + dy * dy;
-          if (d2 < 14000) { const d = Math.sqrt(d2) || 1; q.vx += dx / d * .35; q.vy += dy / d * .2; }
-          q.vx *= .985; q.x += q.vx; q.y += q.vy;
-          const t = q.life / q.max;
-          const a = Math.sin(Math.PI * Math.min(t, 1)) * (.55 + .45 * Math.sin(q.f * 2));
-          if (t >= 1 || q.y < -20) { this.p.splice(i, 1); continue; }
-          const r = q.s * (1 - t * .5);
-          const g = ctx.createRadialGradient(q.x, q.y, 0, q.x, q.y, r * 4);
-          g.addColorStop(0, `hsla(${q.hue + 15},100%,75%,${a})`);
-          g.addColorStop(.25, `hsla(${q.hue},100%,55%,${a * .6})`);
-          g.addColorStop(1, `hsla(${q.hue},100%,45%,0)`);
-          ctx.fillStyle = g; ctx.beginPath(); ctx.arc(q.x, q.y, r * 4, 0, Math.PI * 2); ctx.fill();
-        }
-        ctx.globalCompositeOperation = 'source-over';
-        requestAnimationFrame(step);
-      };
-      requestAnimationFrame(step);
-    }
-  }
-  if (!reduce) {
-    $$('[data-embers]').forEach(c => new Embers(c, c.dataset.embers === 'hero' ? 70 : 110));
-  }
-
 
   /* ---------- Orari e stato aperto/chiuso (ora italiana) ---------- */
   const SLOTS = [[12 * 60, 14 * 60 + 30], [19 * 60, 22 * 60]];
