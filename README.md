@@ -8,10 +8,9 @@ Apri `index.html` nel browser, oppure pubblica la cartella così com'è su Netli
 
 ## Cosa contiene
 - **Hero** con piatto che ruota allo scroll, vapore e braci animate (canvas).
-- **La sfoglia**: animazione guidata dallo scroll, uova e farina → impasto → mattarello → taglio → tagliatelle.
 - **Brace e arrosti** con braci che reagiscono al mouse.
 - **Orari** con stato aperto/chiuso in tempo reale calcolato sull'ora italiana (`js/main.js`, costante `SLOTS`).
-- **Prenotazione**: il modulo compone il messaggio e apre WhatsApp al 335 678 0073.
+- **Prenotazione**: tutti i pulsanti «Prenota» aprono WhatsApp al 335 678 0073 con un messaggio già pronto.
 - SEO locale: dati strutturati `Restaurant` (schema.org), Open Graph, `robots.txt`, `sitemap.xml`.
 
 ## Da fare prima della pubblicazione

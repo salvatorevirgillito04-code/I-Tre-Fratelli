@@ -55,7 +55,6 @@
   <nav class="nav__inner" aria-label="Principale">
     <ul class="nav__links">
       <li><a href="#storia">La casa</a></li>
-      <li><a href="#pasta">Pasta fresca</a></li>
       <li><a href="#brace">Brace</a></li>
       <li><a href="#menu">Menù</a></li>
       <li><a href="#orari">Orari</a></li>
@@ -66,7 +65,7 @@
     </a>
     <div class="nav__end">
       <span class="status" data-status aria-live="polite"><i class="status__dot"></i><span data-status-text>Orari</span></span>
-      <a class="btn btn--brass" href="#prenota">Prenota</a>
+      <a class="btn btn--brass" href="https://wa.me/393356780073?text=Buongiorno%2C%20vorrei%20prenotare%20un%20tavolo%20da%20I%20Tre%20Fratelli." target="_blank" rel="noopener">Prenota su WhatsApp</a>
     </div>
     <button class="nav__toggle" type="button" aria-expanded="false" aria-controls="menu-mobile">
       <span class="sr">Apri il menù</span><i></i><i></i>
@@ -75,12 +74,11 @@
   <div class="mobile-menu" id="menu-mobile" hidden>
     <ul>
       <li><a href="#storia">La casa</a></li>
-      <li><a href="#pasta">Pasta fresca</a></li>
       <li><a href="#brace">Brace e arrosti</a></li>
       <li><a href="#menu">Menù</a></li>
       <li><a href="#orari">Orari</a></li>
       <li><a href="#come-arrivare">Come arrivare</a></li>
-      <li><a href="#prenota">Prenota un tavolo</a></li>
+      <li><a href="https://wa.me/393356780073?text=Buongiorno%2C%20vorrei%20prenotare%20un%20tavolo%20da%20I%20Tre%20Fratelli." target="_blank" rel="noopener">Prenota su WhatsApp</a></li>
     </ul>
   </div>
 </header>
@@ -132,26 +130,6 @@
       <figure class="ph ph--tall"><img loading="lazy" src="img/uova-farina-800.webp" srcset="img/uova-farina-800.webp 800w, img/uova-farina-1600.webp 1600w" sizes="(max-width: 760px) 100vw, 30vw" alt="Uova intere nella fontana di farina, l’inizio della sfoglia"></figure>
       <figure class="ph"><img loading="lazy" src="img/pasta-ripiena-800.webp" srcset="img/pasta-ripiena-800.webp 800w, img/pasta-ripiena-1600.webp 1600w" sizes="(max-width: 760px) 50vw, 22vw" alt="Pasta ripiena chiusa a mano sul tagliere di legno"></figure>
       <figure class="ph"><img loading="lazy" src="img/garganelli-800.webp" srcset="img/garganelli-800.webp 800w, img/garganelli-1600.webp 1600w" sizes="(max-width: 760px) 50vw, 22vw" alt="Garganelli arrotolati a mano"></figure>
-    </div>
-  </div>
-</section>
-
-<!-- PASTA FRESCA: animazione sfoglia -->
-<section class="sfoglia" id="pasta" aria-labelledby="pasta-title">
-  <div class="sfoglia__sticky">
-    <div class="wrap sfoglia__grid">
-      <div class="sfoglia__text">
-        <h2 class="h2" id="pasta-title">La sfoglia, ogni mattina.</h2>
-        <ol class="steps">
-          <li class="is-active" data-step="0"><strong>Uova e farina</strong><span>La fontana sul tagliere, le uova al centro, le mani che impastano.</span></li>
-          <li data-step="1"><strong>Il mattarello</strong><span>La sfoglia si tira sottile, fino a vedere la luce attraverso.</span></li>
-          <li data-step="2"><strong>Il taglio</strong><span>Coltello e occhio: tagliatelle, strozzapreti, garganelli, cappelletti.</span></li>
-        </ol>
-        <p class="sfoglia__hint">Scorri: la sfoglia prende forma.</p>
-      </div>
-      <div class="sfoglia__stage">
-        <canvas id="sfoglia-canvas" aria-label="Animazione: uova e farina diventano sfoglia e poi tagliatelle" role="img"></canvas>
-      </div>
     </div>
   </div>
 </section>
@@ -218,7 +196,7 @@
       <h2 class="h2">Orari di apertura.</h2>
       <p class="hours__now" data-status-big><i class="status__dot"></i><span data-status-text>Controllo l’orario…</span></p>
       <p class="hours__note">Lo stato è calcolato sull’ora italiana. Nei giorni festivi e ad agosto gli orari possono cambiare: in caso di dubbio scrivici su WhatsApp.</p>
-      <a class="btn btn--brass" href="#prenota">Prenota per oggi</a>
+      <a class="btn btn--brass" href="https://wa.me/393356780073?text=Buongiorno%2C%20vorrei%20prenotare%20un%20tavolo%20da%20I%20Tre%20Fratelli." target="_blank" rel="noopener">Prenota su WhatsApp · 335 678 0073</a>
     </div>
     <table class="hours__table" aria-label="Orari settimanali">
       <tbody>
@@ -253,50 +231,6 @@
   </div>
 </section>
 
-<!-- PRENOTA -->
-<section class="book" id="prenota">
-  <div class="book__bg" aria-hidden="true"><img loading="lazy" src="img/tagliatelle-ragu-1600.webp" alt=""></div>
-  <div class="wrap book__grid">
-    <div class="book__text">
-      <h2 class="h2">Prenota un tavolo.</h2>
-      <p>Compila i campi: si apre WhatsApp con il messaggio già scritto, tu premi invio. Ti rispondiamo per confermare.</p>
-      <p class="book__phone">WhatsApp e telefono<br><a href="tel:+393356780073">335 678 0073</a></p>
-    </div>
-    <form class="form" id="book-form" novalidate>
-      <div class="field">
-        <label for="f-name">Nome</label>
-        <input id="f-name" name="name" autocomplete="name" required placeholder="Mario Rossi">
-        <p class="err" id="e-name"></p>
-      </div>
-      <div class="field-row">
-        <div class="field">
-          <label for="f-date">Giorno</label>
-          <input id="f-date" name="date" type="date" required>
-          <p class="err" id="e-date"></p>
-        </div>
-        <div class="field">
-          <label for="f-time">Orario</label>
-          <select id="f-time" name="time" required></select>
-          <p class="err" id="e-time"></p>
-        </div>
-      </div>
-      <div class="field">
-        <span class="label" id="l-people">Persone</span>
-        <div class="stepper" role="group" aria-labelledby="l-people">
-          <button type="button" data-step="-1" aria-label="Una persona in meno">−</button>
-          <output id="f-people" aria-live="polite">2</output>
-          <button type="button" data-step="1" aria-label="Una persona in più">+</button>
-        </div>
-      </div>
-      <div class="field">
-        <label for="f-notes">Note <span class="opt">(facoltative)</span></label>
-        <textarea id="f-notes" name="notes" rows="2" placeholder="Seggiolone, intolleranze, un compleanno…"></textarea>
-      </div>
-      <button class="btn btn--brass btn--full" type="submit">Invia la richiesta su WhatsApp</button>
-    </form>
-  </div>
-</section>
-
 </main>
 
 <footer class="footer">
@@ -311,7 +245,7 @@
     </div>
     <div>
       <p class="footer__label">Prenotazioni</p>
-      <p><a href="https://wa.me/393356780073">WhatsApp 335 678 0073</a><br><a href="tel:+393356780073">Chiama</a></p>
+      <p><a href="https://wa.me/393356780073?text=Buongiorno%2C%20vorrei%20prenotare%20un%20tavolo%20da%20I%20Tre%20Fratelli." target="_blank" rel="noopener">WhatsApp 335 678 0073</a><br><a href="tel:+393356780073">Chiama</a></p>
     </div>
     <div>
       <p class="footer__label">Orari</p>
@@ -330,7 +264,7 @@
 
 <div class="actionbar" aria-label="Azioni rapide">
   <a href="tel:+393356780073">Chiama</a>
-  <a href="#prenota" class="is-main">Prenota su WhatsApp</a>
+  <a href="https://wa.me/393356780073?text=Buongiorno%2C%20vorrei%20prenotare%20un%20tavolo%20da%20I%20Tre%20Fratelli." class="is-main" target="_blank" rel="noopener">Prenota su WhatsApp</a>
 </div>
 
 <script src="js/main.js" defer></script>
