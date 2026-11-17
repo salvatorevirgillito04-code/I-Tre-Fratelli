@@ -1,10 +1,35 @@
 /* I Tre Fratelli — interazioni */
 (() => {
   'use strict';
+  document.documentElement.classList.add('js-ready');
   const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   const $ = (s, r = document) => r.querySelector(s);
   const $$ = (s, r = document) => Array.from(r.querySelectorAll(s));
   const clamp = (v, a = 0, b = 1) => Math.min(b, Math.max(a, v));
+
+  /* ---------- Svelamento di foto e manifesto (sicuro: mai foto nascoste) ---------- */
+  const root = document.documentElement;
+  const pending = $$('[data-reveal]');
+  const showIn = () => {
+    const h = window.innerHeight || 800;
+    for (let i = pending.length - 1; i >= 0; i--) {
+      const r = pending[i].getBoundingClientRect();
+      if (r.top < h * 1.05 && r.bottom > -h * 0.2) { pending[i].classList.add('is-in'); pending.splice(i, 1); }
+    }
+  };
+  if (!reduce) {
+    root.classList.add('reveal-on');
+    if ('IntersectionObserver' in window) {
+      const io = new IntersectionObserver(entries => entries.forEach(en => {
+        if (en.isIntersecting) { en.target.classList.add('is-in'); io.unobserve(en.target); }
+      }), { rootMargin: '0px 0px 10% 0px', threshold: 0 });
+      pending.forEach(el => io.observe(el));
+    }
+    showIn();
+    window.addEventListener('scroll', showIn, { passive: true });
+    window.addEventListener('resize', showIn);
+    window.addEventListener('load', showIn);
+  }
 
   /* ---------- Sipario d'apertura e entrata hero ---------- */
   $$('.hero [data-rise]').forEach((el, i) => el.style.setProperty('--i', i));
@@ -62,16 +87,6 @@
     if (!reduce) plateImg.style.setProperty('--plate-rot', (y * 0.08).toFixed(2) + 'deg');
     ticking = false;
   };
-  /* ---------- Svelamento di foto e manifesto ---------- */
-  const reveals = $$('[data-reveal]');
-  if (reduce || !('IntersectionObserver' in window)) reveals.forEach(el => el.classList.add('is-in'));
-  else {
-    const io = new IntersectionObserver(entries => entries.forEach(en => {
-      if (en.isIntersecting) { en.target.classList.add('is-in'); io.unobserve(en.target); }
-    }), { rootMargin: '0px 0px 15% 0px', threshold: 0 });
-    reveals.forEach(el => io.observe(el));
-  }
-
   window.addEventListener('scroll', () => { if (!ticking) { ticking = true; requestAnimationFrame(onScroll); } }, { passive: true });
 
   /* ---------- Orari e stato aperto/chiuso (ora italiana) ---------- */
