@@ -15,7 +15,7 @@ Apri `index.html` nel browser, oppure pubblica la cartella così com'è su Netli
 - SEO locale: dati strutturati `Restaurant` (schema.org), Open Graph, `robots.txt`, `sitemap.xml`.
 
 ## Da fare prima della pubblicazione
-- Sostituire le foto (licenze libere da Wikimedia Commons, crediti nel footer) con foto del ristorante.
+- Foto: in parte da Wikimedia Commons (licenze libere, crediti nel footer), in parte generate con Canva AI (`img/gen-*`). Vanno sostituite col tempo con foto vere del ristorante.
 - Confermare i piatti del menù (sezione `#menu`, segnati con `data-assumed`) e i tempi di percorrenza.
 - Indirizzo attuale: https://salvatorevirgillito04-code.github.io/I-Tre-Fratelli/ (GitHub Pages). Con un dominio proprio aggiornare canonical, og, `robots.txt` e `sitemap.xml`.
 - Per cambiare gli orari: tabella in `index.html` + `SLOTS` e `slotsFor` in `js/main.js` + JSON-LD.
