@@ -18,3 +18,6 @@ Apri `index.html` nel browser, oppure pubblica la cartella così com'è su Netli
 - Confermare i piatti del menù (sezione `#menu`, segnati con `data-assumed`) e i tempi di percorrenza.
 - Indirizzo attuale: https://salvatorevirgillito04-code.github.io/I-Tre-Fratelli/ (GitHub Pages). Con un dominio proprio aggiornare canonical, og, `robots.txt` e `sitemap.xml`.
 - Per cambiare gli orari: tabella in `index.html` + `SLOTS` e `slotsFor` in `js/main.js` + JSON-LD.
+
+## Aggiornamenti
+Dopo ogni modifica a `css/style.css` o `js/main.js` aggiorna il numero `?v=` nei due link in fondo a `index.html` e nel `<head>`: così i telefoni scaricano subito i file nuovi invece di quelli in memoria.
