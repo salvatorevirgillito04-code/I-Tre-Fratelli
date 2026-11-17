@@ -109,7 +109,7 @@ body.menu-open{overflow:hidden}
 .js-ready .is-loaded .hero__title .line [data-rise]{transform:none}
 
 .plate{position:absolute;z-index:2;left:50%;top:44%;width:min(30vw,390px);aspect-ratio:1;transform:translate(-50%,-50%);pointer-events:none;transform-style:preserve-3d}
-.plate__img{display:block;width:100%;height:100%;border-radius:50%;box-shadow:0 50px 70px -20px rgba(0,0,0,.85);transition:transform 2.2s var(--ease), opacity 1.2s;will-change:transform}
+.plate__img{display:block;width:100%;height:auto;filter:drop-shadow(0 40px 30px rgba(0,0,0,.75));transition:transform 2.2s var(--ease), opacity 1.2s;will-change:transform}
 .js-ready .reveal .plate__img{transform:rotate(-70deg) scale(.7);opacity:0}
 .js-ready .reveal.is-in .plate__img{opacity:1;transform:rotate(var(--plate-rot,0deg)) scale(1)}
 .plate.is-spinning .plate__img{transition:transform .2s linear}
