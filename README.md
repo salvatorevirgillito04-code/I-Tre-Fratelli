@@ -17,5 +17,5 @@ Apri `index.html` nel browser, oppure pubblica la cartella così com'è su Netli
 ## Da fare prima della pubblicazione
 - Sostituire le foto (licenze libere da Wikimedia Commons, crediti nel footer) con foto del ristorante.
 - Confermare i piatti del menù (sezione `#menu`, segnati con `data-assumed`) e i tempi di percorrenza.
-- Impostare il dominio definitivo in `index.html` (canonical), `robots.txt` e `sitemap.xml`.
+- Indirizzo attuale: https://salvatorevirgillito04-code.github.io/I-Tre-Fratelli/ (GitHub Pages). Con un dominio proprio aggiornare canonical, og, `robots.txt` e `sitemap.xml`.
 - Per cambiare gli orari: tabella in `index.html` + `SLOTS` e `slotsFor` in `js/main.js` + JSON-LD.
