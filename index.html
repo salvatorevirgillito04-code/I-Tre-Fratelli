@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>I Tre Fratelli · Ristorante a Lugo (RA) · Alta cucina romagnola dal 1988</title>
 <meta name="description" content="Ristorante I Tre Fratelli a Lugo di Romagna, dal 1988: pasta fresca tirata a mano, carne alla griglia e arrosti. Via di Giù 56, Lugo (RA). Prenota su WhatsApp al 335 678 0073.">
-<meta name="theme-color" content="#12100e">
+<meta name="theme-color" content="#0b0a08">
 <link rel="canonical" href="https://salvatorevirgillito04-code.github.io/I-Tre-Fratelli/">
 <meta property="og:type" content="restaurant">
 <meta property="og:locale" content="it_IT">
@@ -21,7 +21,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..600;1,6..96,400..500&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
 <link rel="preload" as="image" href="img/sala-sera-1600.webp" imagesrcset="img/sala-sera-800.webp 800w, img/sala-sera-1200.webp 1200w, img/sala-sera-1600.webp 1600w, img/sala-sera-2000.webp 2000w" imagesizes="100vw">
 <style>.intro{display:none}</style>
-<link rel="stylesheet" href="css/style.css?v=202611171646y">
+<link rel="stylesheet" href="css/style.css?v=202611171806k">
 <script>(function(d){d.classList.add('js');try{if(sessionStorage.getItem('itf-intro'))d.classList.add('intro-seen');sessionStorage.setItem('itf-intro','1')}catch(e){}})(document.documentElement)</script>
 <script type="application/ld+json">
 {
@@ -99,6 +99,7 @@
   <div class="hero__bg" aria-hidden="true">
     <img src="img/sala-sera-1600.webp" srcset="img/sala-sera-800.webp 800w, img/sala-sera-1200.webp 1200w, img/sala-sera-1600.webp 1600w, img/sala-sera-2000.webp 2000w" sizes="100vw" alt="" fetchpriority="high">
   </div>
+  <canvas class="leaf" data-leaf="drift" aria-hidden="true"></canvas>
   <div class="hero__content">
     <p class="hero__kicker" data-rise>Ristorante · Via di Giù 56 · Lugo</p>
     <h1 class="hero__title">
@@ -116,7 +117,7 @@
 <!-- STORIA -->
 <section class="story" id="storia">
   <div class="wrap story__grid">
-    <div class="story__text">
+    <div class="story__text rise" data-reveal>
       <p class="eyebrow">La casa</p>
       <h2 class="h2">Una cucina di famiglia,<br>dal 1988.</h2>
       <p>Dall’8 marzo 1988 I Tre Fratelli cucina la Romagna di casa: uova e farina sul tagliere, il mattarello, il forno acceso per gli arrosti. Niente scorciatoie, gli stessi gesti da più di trentacinque anni.</p>
@@ -136,7 +137,7 @@
 </section>
 
 <!-- RIVELAZIONE: piatto davanti al titolo gigante, foglie d'oro -->
-<section class="reveal" data-reveal aria-labelledby="reveal-title">
+<section class="reveal" data-reveal data-progress aria-labelledby="reveal-title">
   <canvas class="leaf" data-leaf="burst" aria-hidden="true"></canvas>
   <div class="reveal__stage">
     <p class="reveal__giant" aria-hidden="true"><span>Il tempo</span><span>giusto</span></p>
@@ -159,10 +160,10 @@
 </section>
 
 <!-- LE CARNI: la tagliata si seziona mentre scorri -->
-<section class="dissect" id="carni" aria-labelledby="carni-title">
+<section class="dissect" id="carni" data-progress aria-labelledby="carni-title">
   <canvas class="leaf" data-leaf="drift" aria-hidden="true"></canvas>
   <div class="wrap">
-    <div class="brace__head">
+    <div class="brace__head rise" data-reveal>
       <div><p class="eyebrow">Le carni</p>
       <h2 class="h2" id="carni-title">Carni scelte,<br>cotte con pazienza.</h2></div>
       <p>Tagli selezionati alla griglia, arrosti che riposano a lungo nel forno. Arrivano in tavola al punto giusto, con il loro fondo di cottura.</p>
@@ -170,8 +171,8 @@
   </div>
   <div class="dissect__stage">
     <p class="dissect__giant" aria-hidden="true">Precisione</p>
-    <div class="slices" role="img" aria-label="Tagliata di manzo al rosmarino, rosata al centro">
-      <span class="slice" style="--i:0;--dy:-1"></span><span class="slice" style="--i:1;--dy:.6"></span><span class="slice" style="--i:2;--dy:-.4"></span><span class="slice" style="--i:3;--dy:.9"></span><span class="slice" style="--i:4;--dy:-.7"></span><span class="slice" style="--i:5;--dy:.3"></span>
+    <div class="arch-wrap" data-reveal data-progress>
+      <figure class="arch"><img loading="lazy" decoding="async" src="img/gen-tagliata-1200.webp" srcset="img/gen-tagliata-800.webp 800w, img/gen-tagliata-1200.webp 1200w, img/gen-tagliata-1600.webp 1600w" sizes="(max-width: 760px) 80vw, 34vw" alt="Tagliata di manzo al rosmarino, rosata al centro"></figure>
     </div>
   </div>
   <p class="dissect__tag">Il gusto della pazienza</p>
@@ -180,7 +181,7 @@
 <!-- MENU -->
 <section class="menu" id="menu">
   <div class="wrap">
-    <div class="menu__head">
+    <div class="menu__head rise" data-reveal>
       <div><p class="eyebrow">Il menù</p>
       <h2 class="h2">Cosa arriva in tavola.</h2></div>
       <p>Un assaggio della cucina. Il menù cambia con le stagioni: per i piatti del giorno scrivici su WhatsApp.</p>
@@ -189,21 +190,21 @@
       <div class="menu__col">
         <h3 class="h3">Pasta fresca</h3>
         <ul class="dishes" data-assumed>
-          <li><strong>Tagliatelle al ragù</strong><span>Sfoglia all’uovo tagliata a coltello, ragù cotto a lungo.</span></li>
-          <li><strong>Cappelletti</strong><span>Ripieni di formaggi, in brodo o asciutti.</span></li>
-          <li><strong>Strozzapreti</strong><span>Arrotolati a mano, con i condimenti di stagione.</span></li>
-          <li><strong>Garganelli</strong><span>Rigati al pettine, pasta tipica della Romagna.</span></li>
-          <li><strong>Ravioli burro e salvia</strong><span>Pasta sottile, ripieno morbido, burro nocciola.</span></li>
+          <li class="rise-item" data-reveal style="--d:0"><strong>Tagliatelle al ragù</strong><span>Sfoglia all’uovo tagliata a coltello, ragù cotto a lungo.</span></li>
+          <li class="rise-item" data-reveal style="--d:1"><strong>Cappelletti</strong><span>Ripieni di formaggi, in brodo o asciutti.</span></li>
+          <li class="rise-item" data-reveal style="--d:2"><strong>Strozzapreti</strong><span>Arrotolati a mano, con i condimenti di stagione.</span></li>
+          <li class="rise-item" data-reveal style="--d:3"><strong>Garganelli</strong><span>Rigati al pettine, pasta tipica della Romagna.</span></li>
+          <li class="rise-item" data-reveal style="--d:4"><strong>Ravioli burro e salvia</strong><span>Pasta sottile, ripieno morbido, burro nocciola.</span></li>
         </ul>
       </div>
       <div class="menu__col">
         <h3 class="h3">Carni e arrosti</h3>
         <ul class="dishes" data-assumed>
-          <li><strong>Tagliata di manzo</strong><span>Rosmarino, sale grosso, olio buono.</span></li>
-          <li><strong>Costata alla griglia</strong><span>Tagliata al tavolo, cottura a scelta.</span></li>
-          <li><strong>Grigliata mista</strong><span>Castrato, salsiccia, pancetta: la griglia romagnola.</span></li>
-          <li><strong>Arrosto misto</strong><span>Cotture lente al forno, con patate arrosto.</span></li>
-          <li><strong>Contorni di stagione</strong><span>Verdure grigliate, patate al forno, insalate.</span></li>
+          <li class="rise-item" data-reveal style="--d:0"><strong>Tagliata di manzo</strong><span>Rosmarino, sale grosso, olio buono.</span></li>
+          <li class="rise-item" data-reveal style="--d:1"><strong>Costata alla griglia</strong><span>Tagliata al tavolo, cottura a scelta.</span></li>
+          <li class="rise-item" data-reveal style="--d:2"><strong>Grigliata mista</strong><span>Castrato, salsiccia, pancetta: la griglia romagnola.</span></li>
+          <li class="rise-item" data-reveal style="--d:3"><strong>Arrosto misto</strong><span>Cotture lente al forno, con patate arrosto.</span></li>
+          <li class="rise-item" data-reveal style="--d:4"><strong>Contorni di stagione</strong><span>Verdure grigliate, patate al forno, insalate.</span></li>
         </ul>
       </div>
     </div>
@@ -213,7 +214,7 @@
 <!-- ORARI -->
 <section class="hours" id="orari">
   <div class="wrap hours__grid">
-    <div>
+    <div class="rise" data-reveal>
       <p class="eyebrow">Orari</p>
       <h2 class="h2">Orari di apertura.</h2>
       <p class="hours__now" data-status-big><i class="status__dot"></i><span data-status-text>Controllo l’orario…</span></p>
@@ -238,7 +239,7 @@
 <!-- COME ARRIVARE -->
 <section class="visit" id="come-arrivare">
   <div class="wrap">
-    <div class="visit__head">
+    <div class="visit__head rise" data-reveal>
       <div><p class="eyebrow">Dove siamo</p>
       <h2 class="h2">Vieni a Lugo:<br>è più vicina di quanto pensi.</h2></div>
       <div>
@@ -292,6 +293,6 @@
   <a href="https://wa.me/393356780073?text=Buongiorno%2C%20vorrei%20prenotare%20un%20tavolo%20da%20I%20Tre%20Fratelli." class="is-main" target="_blank" rel="noopener">Prenota su WhatsApp</a>
 </div>
 
-<script src="js/main.js?v=202611171646y" defer></script>
+<script src="js/main.js?v=202611171806k" defer></script>
 </body>
 </html>

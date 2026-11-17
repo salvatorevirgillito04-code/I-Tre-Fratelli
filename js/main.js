@@ -83,7 +83,7 @@
 
   /* ---------- Piatto che ruota con lo scroll ---------- */
   const plateImg = $('.plate__img');
-  const slices = $('.slices');
+  const prog = $$('[data-progress]');
 
   let ticking = false;
   const onScroll = () => {
@@ -92,11 +92,12 @@
     actionbar.classList.toggle('is-on', y > hero.offsetHeight * 0.6);
     if (!reduce) {
       plateImg.style.setProperty('--plate-rot', (y * 0.06).toFixed(2) + 'deg');
-      if (slices) {
-        const r = slices.getBoundingClientRect(), vh = window.innerHeight;
-        const p = clamp((vh * 0.9 - r.top) / (vh * 0.9));
-        slices.style.setProperty('--p', p.toFixed(3));
-      }
+      const vh = window.innerHeight;
+      prog.forEach(el => {
+        const r = el.getBoundingClientRect();
+        if (r.bottom < -100 || r.top > vh + 100) return;
+        el.style.setProperty('--p', clamp((vh - r.top) / (vh + r.height)).toFixed(3));
+      });
     }
     ticking = false;
   };
@@ -120,7 +121,8 @@
     resize() {
       const r = this.c.getBoundingClientRect(); this.dpr = Math.min(window.devicePixelRatio || 1, 2);
       this.w = r.width; this.h = r.height; this.c.width = this.w * this.dpr; this.c.height = this.h * this.dpr;
-      this.max = Math.round(Math.min(this.w, 1440) / 1440 * (this.mode === 'burst' ? 16 : 22)) + 6;
+      const hero = this.c.parentElement.classList.contains('hero');
+      this.max = Math.round(Math.min(this.w, 1440) / 1440 * (this.mode === 'burst' ? 16 : hero ? 10 : 22)) + (hero ? 3 : 6);
     }
     make(x, y, vx, vy) {
       const n = 5 + Math.floor(Math.random() * 3), pts = [];
