@@ -5,12 +5,34 @@
   const $ = (s, r = document) => r.querySelector(s);
   const $$ = (s, r = document) => Array.from(r.querySelectorAll(s));
   const clamp = (v, a = 0, b = 1) => Math.min(b, Math.max(a, v));
-  const lerp = (a, b, t) => a + (b - a) * t;
-  const ease = t => (t < .5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2);
 
-  /* ---------- Entrata hero ---------- */
+  /* ---------- Sipario d'apertura e entrata hero ---------- */
   $$('.hero [data-rise]').forEach((el, i) => el.style.setProperty('--i', i));
-  requestAnimationFrame(() => requestAnimationFrame(() => document.body.classList.add('is-loaded')));
+  const intro = $('.intro');
+  const introOn = intro && !reduce && getComputedStyle(intro).display !== 'none';
+  const startHero = () => {
+    requestAnimationFrame(() => requestAnimationFrame(() => document.body.classList.add('is-loaded')));
+    if (!reduce) setTimeout(() => $('.plate').classList.add('is-spinning'), 2300);
+  };
+  const dropIntro = () => { if (intro && intro.parentNode) intro.parentNode.removeChild(intro); };
+  if (introOn) {
+    document.body.classList.add('menu-open');
+    let lifted = false;
+    const lift = () => {
+      if (lifted) return; lifted = true;
+      intro.classList.add('is-out');
+      document.body.classList.remove('menu-open');
+      setTimeout(startHero, 350);
+      setTimeout(dropIntro, 1200);
+    };
+    const t0 = performance.now();
+    const go = () => setTimeout(lift, Math.max(0, 1700 - (performance.now() - t0)));
+    if (document.readyState === 'complete') go(); else window.addEventListener('load', go, { once: true });
+    setTimeout(lift, 4000);
+  } else {
+    dropIntro();
+    startHero();
+  }
 
   /* ---------- Nav, menù mobile, barra azioni ---------- */
   const nav = $('#nav');
@@ -22,7 +44,7 @@
     toggle.setAttribute('aria-expanded', String(open));
     toggle.querySelector('.sr').textContent = open ? 'Chiudi il menù' : 'Apri il menù';
     mobileMenu.hidden = !open;
-    document.body.style.overflow = open ? 'hidden' : '';
+    document.body.classList.toggle('menu-open', open);
     nav.classList.toggle('is-solid', open || window.scrollY > 40);
   };
   toggle.addEventListener('click', () => setMenu(toggle.getAttribute('aria-expanded') !== 'true'));
@@ -30,9 +52,7 @@
   document.addEventListener('keydown', e => { if (e.key === 'Escape' && !mobileMenu.hidden) { setMenu(false); toggle.focus(); } });
 
   /* ---------- Piatto che ruota con lo scroll ---------- */
-  const plate = $('.plate');
   const plateImg = $('.plate__img');
-  if (!reduce) setTimeout(() => plate.classList.add('is-spinning'), 2300);
 
   let ticking = false;
   const onScroll = () => {
@@ -42,6 +62,16 @@
     if (!reduce) plateImg.style.setProperty('--plate-rot', (y * 0.08).toFixed(2) + 'deg');
     ticking = false;
   };
+  /* ---------- Svelamento di foto e manifesto ---------- */
+  const reveals = $$('[data-reveal]');
+  if (reduce || !('IntersectionObserver' in window)) reveals.forEach(el => el.classList.add('is-in'));
+  else {
+    const io = new IntersectionObserver(entries => entries.forEach(en => {
+      if (en.isIntersecting) { en.target.classList.add('is-in'); io.unobserve(en.target); }
+    }), { rootMargin: '0px 0px -12% 0px', threshold: 0.05 });
+    reveals.forEach(el => io.observe(el));
+  }
+
   window.addEventListener('scroll', () => { if (!ticking) { ticking = true; requestAnimationFrame(onScroll); } }, { passive: true });
 
   /* ---------- Braci (canvas) ---------- */

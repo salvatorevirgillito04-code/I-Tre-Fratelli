@@ -18,9 +18,10 @@
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%2312100e'/%3E%3Ctext x='32' y='44' font-family='Georgia,serif' font-size='34' text-anchor='middle' fill='%23c9a76b'%3E3F%3C/text%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Manrope:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Manrope:wght@300;400;500;600&display=swap" rel="stylesheet">
 <link rel="preload" as="image" href="img/gen-tavola-1600.webp">
 <link rel="stylesheet" href="css/style.css">
+<script>(function(d){d.classList.add('js');try{if(sessionStorage.getItem('itf-intro'))d.classList.add('intro-seen');sessionStorage.setItem('itf-intro','1')}catch(e){}})(document.documentElement)</script>
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -50,6 +51,7 @@
 </head>
 <body>
 <a class="skip" href="#main">Vai al contenuto</a>
+<div class="intro" aria-hidden="true"><div class="intro__inner"><p class="intro__name">I Tre Fratelli</p><span class="intro__line"></span><p class="intro__sub">Lugo di Romagna · dal 1988</p></div></div>
 
 <header class="nav" id="nav">
   <nav class="nav__inner" aria-label="Principale">
@@ -71,17 +73,23 @@
       <span class="sr">Apri il menù</span><i></i><i></i>
     </button>
   </nav>
-  <div class="mobile-menu" id="menu-mobile" hidden>
+</header>
+<div class="mobile-menu" id="menu-mobile" hidden>
+  <nav aria-label="Menù mobile">
     <ul>
       <li><a href="#storia">La casa</a></li>
-      <li><a href="#brace">Brace e arrosti</a></li>
-      <li><a href="#menu">Menù</a></li>
+      <li><a href="#brace">La brace</a></li>
+      <li><a href="#menu">Il menù</a></li>
       <li><a href="#orari">Orari</a></li>
-      <li><a href="#come-arrivare">Come arrivare</a></li>
-      <li><a href="https://wa.me/393356780073?text=Buongiorno%2C%20vorrei%20prenotare%20un%20tavolo%20da%20I%20Tre%20Fratelli." target="_blank" rel="noopener">Prenota su WhatsApp</a></li>
+      <li><a href="#come-arrivare">Dove siamo</a></li>
     </ul>
+  </nav>
+  <div class="mobile-menu__foot">
+    <p>Via di Giù 56 · Lugo (RA)</p>
+    <p>Mar – Dom · 12:00–14:30 · 19:00–22:00</p>
+    <a class="btn btn--brass" href="https://wa.me/393356780073?text=Buongiorno%2C%20vorrei%20prenotare%20un%20tavolo%20da%20I%20Tre%20Fratelli." target="_blank" rel="noopener">Prenota su WhatsApp</a>
   </div>
-</header>
+</div>
 
 <main id="main">
 
@@ -99,7 +107,7 @@
     </h1>
     <p class="hero__lead" data-rise>Cucina romagnola in Via di Giù 56, a Lugo. La sfoglia si stende ogni giorno, la carne arriva in tavola dalla griglia e dal forno.</p>
     <div class="hero__actions" data-rise>
-      <a class="btn btn--ghost" href="#menu">Guarda il menù</a>
+      <a class="btn btn--ghost" href="#menu">Scopri il menù</a>
     </div>
   </div>
   <div class="plate" aria-hidden="true">
@@ -117,6 +125,7 @@
 <section class="story" id="storia">
   <div class="wrap story__grid">
     <div class="story__text">
+      <p class="eyebrow">La casa</p>
       <h2 class="h2">Una cucina di famiglia,<br>dal 1988.</h2>
       <p>Dall’8 marzo 1988 I Tre Fratelli cucina la Romagna di casa: uova e farina sul tagliere, il mattarello, la brace accesa prima del servizio. Niente scorciatoie, gli stessi gesti da più di trentacinque anni.</p>
       <p>Si viene per un pranzo di lavoro, una cena tra amici, la domenica in famiglia. E da Ravenna, Faenza, Imola e Bologna si arriva in meno di un’ora.</p>
@@ -127,9 +136,9 @@
       </dl>
     </div>
     <div class="story__photos">
-      <figure class="ph ph--tall"><img loading="lazy" src="img/uova-farina-800.webp" srcset="img/uova-farina-800.webp 800w, img/uova-farina-1600.webp 1600w" sizes="(max-width: 760px) 100vw, 30vw" alt="Uova intere nella fontana di farina, l’inizio della sfoglia"></figure>
-      <figure class="ph"><img loading="lazy" src="img/pasta-ripiena-800.webp" srcset="img/pasta-ripiena-800.webp 800w, img/pasta-ripiena-1600.webp 1600w" sizes="(max-width: 760px) 50vw, 22vw" alt="Pasta ripiena chiusa a mano sul tagliere di legno"></figure>
-      <figure class="ph"><img loading="lazy" src="img/garganelli-800.webp" srcset="img/garganelli-800.webp 800w, img/garganelli-1600.webp 1600w" sizes="(max-width: 760px) 50vw, 22vw" alt="Garganelli arrotolati a mano"></figure>
+      <figure data-reveal class="ph ph--tall"><img loading="lazy" src="img/uova-farina-800.webp" srcset="img/uova-farina-800.webp 800w, img/uova-farina-1600.webp 1600w" sizes="(max-width: 760px) 100vw, 30vw" alt="Uova intere nella fontana di farina, l’inizio della sfoglia"></figure>
+      <figure data-reveal class="ph"><img loading="lazy" src="img/pasta-ripiena-800.webp" srcset="img/pasta-ripiena-800.webp 800w, img/pasta-ripiena-1600.webp 1600w" sizes="(max-width: 760px) 50vw, 22vw" alt="Pasta ripiena chiusa a mano sul tagliere di legno"></figure>
+      <figure data-reveal class="ph"><img loading="lazy" src="img/garganelli-800.webp" srcset="img/garganelli-800.webp 800w, img/garganelli-1600.webp 1600w" sizes="(max-width: 760px) 50vw, 22vw" alt="Garganelli arrotolati a mano"></figure>
     </div>
   </div>
 </section>
@@ -139,19 +148,23 @@
   <canvas class="embers" data-embers="brace" aria-hidden="true"></canvas>
   <div class="wrap">
     <div class="brace__head">
-      <h2 class="h2">La brace accesa<br>prima del servizio.</h2>
+      <div><p class="eyebrow">La brace</p>
+      <h2 class="h2">La brace accesa<br>prima del servizio.</h2></div>
       <p>Tagli scelti cotti sulla griglia, arrosti che passano ore nel forno. La carne arriva in tavola come deve: crosta scura fuori, rosata dentro, il suo sugo nel piatto.</p>
     </div>
     <div class="brace__grid">
-      <figure class="ph ph--wide"><img loading="lazy" src="img/gen-costate-800.webp" srcset="img/gen-costate-800.webp 800w, img/gen-costate-1600.webp 1600w" sizes="(max-width: 760px) 100vw, 66vw" alt="Due costate con l’osso sulla griglia, fiamma viva sotto"></figure>
-      <figure class="ph"><img loading="lazy" src="img/brace-scintille-800.webp" srcset="img/brace-scintille-800.webp 800w, img/brace-scintille-1600.webp 1600w" sizes="(max-width: 760px) 100vw, 33vw" alt="Braci di legna con scintille"></figure>
+      <figure data-reveal class="ph ph--wide"><img loading="lazy" src="img/gen-costate-800.webp" srcset="img/gen-costate-800.webp 800w, img/gen-costate-1600.webp 1600w" sizes="(max-width: 760px) 100vw, 66vw" alt="Due costate con l’osso sulla griglia, fiamma viva sotto"></figure>
+      <figure data-reveal class="ph"><img loading="lazy" src="img/brace-scintille-800.webp" srcset="img/brace-scintille-800.webp 800w, img/brace-scintille-1600.webp 1600w" sizes="(max-width: 760px) 100vw, 33vw" alt="Braci di legna con scintille"></figure>
     </div>
   </div>
-  <div class="marquee" aria-hidden="true">
-    <div class="marquee__track">
-      <span>Tagliatelle al ragù</span><span>Strozzapreti</span><span>Cappelletti</span><span>Tagliata</span><span>Costata</span><span>Arrosto misto</span><span>Garganelli</span><span>Grigliata</span>
-      <span>Tagliatelle al ragù</span><span>Strozzapreti</span><span>Cappelletti</span><span>Tagliata</span><span>Costata</span><span>Arrosto misto</span><span>Garganelli</span><span>Grigliata</span>
-    </div>
+</section>
+
+<!-- MANIFESTO -->
+<section class="statement" aria-labelledby="statement-title">
+  <div class="wrap statement__inner">
+    <span class="ornament" aria-hidden="true"><i></i><b></b><i></i></span>
+    <h2 class="statement__title" id="statement-title" data-reveal>Ogni piatto ha il suo tempo:<br><em>la sfoglia al mattino, la brace prima del servizio.</em></h2>
+    <p class="statement__sign">I Tre Fratelli · Lugo di Romagna</p>
   </div>
 </section>
 
@@ -159,12 +172,13 @@
 <section class="menu" id="menu">
   <div class="wrap">
     <div class="menu__head">
-      <h2 class="h2">Cosa arriva in tavola.</h2>
+      <div><p class="eyebrow">Il menù</p>
+      <h2 class="h2">Cosa arriva in tavola.</h2></div>
       <p>Un assaggio della cucina. Il menù cambia con le stagioni: per i piatti del giorno scrivici su WhatsApp.</p>
     </div>
     <div class="menu__grid">
       <div class="menu__col">
-        <figure class="ph menu__photo"><img loading="lazy" src="img/tagliatelle-piatto-800.webp" srcset="img/tagliatelle-piatto-800.webp 800w, img/tagliatelle-piatto-1600.webp 1600w" sizes="(max-width: 760px) 100vw, 40vw" alt="Piatto di tagliatelle al ragù"></figure>
+        <figure data-reveal class="ph menu__photo"><img loading="lazy" src="img/tagliatelle-piatto-800.webp" srcset="img/tagliatelle-piatto-800.webp 800w, img/tagliatelle-piatto-1600.webp 1600w" sizes="(max-width: 760px) 100vw, 40vw" alt="Piatto di tagliatelle al ragù"></figure>
         <h3 class="h3">Pasta fresca</h3>
         <ul class="dishes" data-assumed>
           <li><strong>Tagliatelle al ragù</strong><span>Sfoglia all’uovo tagliata a coltello, ragù cotto a lungo.</span></li>
@@ -175,7 +189,7 @@
         </ul>
       </div>
       <div class="menu__col">
-        <figure class="ph menu__photo"><img loading="lazy" src="img/gen-tagliata-800.webp" srcset="img/gen-tagliata-800.webp 800w, img/gen-tagliata-1600.webp 1600w" sizes="(max-width: 760px) 100vw, 40vw" alt="Tagliata di manzo al rosmarino su ardesia, rosata al centro"></figure>
+        <figure data-reveal class="ph menu__photo"><img loading="lazy" src="img/gen-tagliata-800.webp" srcset="img/gen-tagliata-800.webp 800w, img/gen-tagliata-1600.webp 1600w" sizes="(max-width: 760px) 100vw, 40vw" alt="Tagliata di manzo al rosmarino su ardesia, rosata al centro"></figure>
         <h3 class="h3">Griglia e arrosti</h3>
         <ul class="dishes" data-assumed>
           <li><strong>Tagliata di manzo</strong><span>Rosmarino, sale grosso, olio buono.</span></li>
@@ -193,10 +207,12 @@
 <section class="hours" id="orari">
   <div class="wrap hours__grid">
     <div>
+      <p class="eyebrow">Orari</p>
       <h2 class="h2">Orari di apertura.</h2>
       <p class="hours__now" data-status-big><i class="status__dot"></i><span data-status-text>Controllo l’orario…</span></p>
       <p class="hours__note">Lo stato è calcolato sull’ora italiana. Nei giorni festivi e ad agosto gli orari possono cambiare: in caso di dubbio scrivici su WhatsApp.</p>
-      <a class="btn btn--brass" href="https://wa.me/393356780073?text=Buongiorno%2C%20vorrei%20prenotare%20un%20tavolo%20da%20I%20Tre%20Fratelli." target="_blank" rel="noopener">Prenota su WhatsApp · 335 678 0073</a>
+      <a class="btn btn--brass" href="https://wa.me/393356780073?text=Buongiorno%2C%20vorrei%20prenotare%20un%20tavolo%20da%20I%20Tre%20Fratelli." target="_blank" rel="noopener">Prenota su WhatsApp</a>
+      <p class="hours__call">oppure chiama il <a href="tel:+393356780073">335 678 0073</a></p>
     </div>
     <table class="hours__table" aria-label="Orari settimanali">
       <tbody>
@@ -216,14 +232,15 @@
 <section class="visit" id="come-arrivare">
   <div class="wrap">
     <div class="visit__head">
-      <h2 class="h2">Vieni a Lugo:<br>è più vicina di quanto pensi.</h2>
+      <div><p class="eyebrow">Dove siamo</p>
+      <h2 class="h2">Vieni a Lugo:<br>è più vicina di quanto pensi.</h2></div>
       <div>
         <p>Siamo in Via di Giù 56, a pochi minuti dal centro storico, dalla Rocca Estense e dal Pavaglione. Uscita autostradale Lugo-Cotignola sulla A14 dir. Parcheggio in zona.</p>
         <a class="btn btn--dark visit__dir" target="_blank" rel="noopener" href="https://www.google.com/maps/dir/?api=1&amp;destination=Via%20di%20Gi%C3%B9%2056%2C%2048022%20Lugo%20RA">Apri le indicazioni</a>
       </div>
     </div>
     <div class="visit__grid">
-      <figure class="ph visit__photo"><img loading="lazy" src="img/lugo-pavaglione-800.webp" srcset="img/lugo-pavaglione-800.webp 800w, img/lugo-pavaglione-1600.webp 1600w" sizes="(max-width: 760px) 100vw, 33vw" alt="Il porticato del Pavaglione nel centro di Lugo"></figure>
+      <figure data-reveal class="ph visit__photo"><img loading="lazy" src="img/lugo-pavaglione-800.webp" srcset="img/lugo-pavaglione-800.webp 800w, img/lugo-pavaglione-1600.webp 1600w" sizes="(max-width: 760px) 100vw, 33vw" alt="Il porticato del Pavaglione nel centro di Lugo"></figure>
       <div class="visit__map">
         <iframe title="Mappa: I Tre Fratelli, Via di Giù 56, Lugo" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="https://maps.google.com/maps?q=Ristorante%20I%20Tre%20Fratelli%2C%20Via%20di%20Gi%C3%B9%2056%2C%2048022%20Lugo%20RA&z=15&output=embed"></iframe>
       </div>
@@ -238,6 +255,7 @@
     <div class="footer__brand">
       <p class="footer__name">I Tre Fratelli</p>
       <p>Cucina romagnola dal 1988</p>
+      <span class="ornament ornament--left" aria-hidden="true"><i></i><b></b><i></i></span>
     </div>
     <div>
       <p class="footer__label">Indirizzo</p>
