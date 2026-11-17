@@ -14,6 +14,11 @@
   const markIn = el => {
     el.classList.add('is-in');
     if (el.classList.contains('reveal') && plateEl && !reduce) setTimeout(() => plateEl.classList.add('is-spinning'), 2300);
+    if (!reduce && (el.classList.contains('reveal') || el.classList.contains('meat'))) {
+      const sec = el.closest('section'); const cv = sec && sec.querySelector('canvas.leaf');
+      const target = el.classList.contains('meat') ? el : el.querySelector('.plate');
+      setTimeout(() => { if (cv && cv._leaf) cv._leaf.burst(target); }, el.classList.contains('meat') ? 1150 : 1000);
+    }
   };
   const showIn = () => {
     const h = window.innerHeight || 800;
@@ -84,6 +89,18 @@
   /* ---------- Piatto che ruota con lo scroll ---------- */
   const plateImg = $('.plate__img');
   const prog = $$('[data-progress]');
+  const revealSec = $('.reveal'), carni = $('#carni');
+  if (!reduce && window.matchMedia('(pointer: fine)').matches) {
+    $$('[data-tilt]').forEach(sc => {
+      const host = sc.closest('section');
+      host.addEventListener('pointermove', e => {
+        const r = sc.getBoundingClientRect();
+        sc.style.setProperty('--mx', clamp((e.clientX - r.left) / r.width * 2 - 1, -1, 1).toFixed(3));
+        sc.style.setProperty('--my', clamp((e.clientY - r.top) / r.height * 2 - 1, -1, 1).toFixed(3));
+      });
+      host.addEventListener('pointerleave', () => { sc.style.setProperty('--mx', 0); sc.style.setProperty('--my', 0); });
+    });
+  }
 
   let ticking = false;
   const onScroll = () => {
@@ -93,6 +110,7 @@
     if (!reduce) {
       plateImg.style.setProperty('--plate-rot', (y * 0.06).toFixed(2) + 'deg');
       const vh = window.innerHeight;
+      if (revealSec && carni) revealSec.style.setProperty('--cover', clamp(1 - carni.getBoundingClientRect().top / vh).toFixed(3));
       prog.forEach(el => {
         const r = el.getBoundingClientRect();
         if (r.bottom < -100 || r.top > vh + 100) return;
@@ -108,14 +126,11 @@
   class GoldLeaf {
     constructor(canvas, mode) {
       this.c = canvas; this.ctx = canvas.getContext('2d'); this.mode = mode;
-      this.f = []; this.visible = false; this.burstDone = false;
+      this.f = []; this.visible = false; canvas._leaf = this;
       this.resize(); window.addEventListener('resize', () => this.resize());
       new IntersectionObserver(([en]) => {
         this.visible = en.isIntersecting;
-        if (this.visible) {
-          if (this.mode === 'burst' && !this.burstDone) { this.burstDone = true; setTimeout(() => this.burst(), 450); }
-          this.loop();
-        }
+        if (this.visible) this.loop();
       }, { threshold: 0.25 }).observe(canvas);
     }
     resize() {
@@ -127,13 +142,18 @@
     make(x, y, vx, vy) {
       const n = 5 + Math.floor(Math.random() * 3), pts = [];
       for (let k = 0; k < n; k++) { const a = k / n * Math.PI * 2 + Math.random() * .5; const rr = .55 + Math.random() * .45; pts.push([Math.cos(a) * rr, Math.sin(a) * rr]); }
-      return { x, y, vx, vy, s: 5 + Math.random() * 11, rot: Math.random() * 6.28, vr: (Math.random() - .5) * .06, ph: Math.random() * 6.28, vp: .03 + Math.random() * .05, sw: Math.random() * 6.28, pts };
+      return { x, y, vx, vy, s: 5 + Math.random() * 11, rot: Math.random() * 6.28, vr: (Math.random() - .5) * .06, ph: Math.random() * 6.28, vp: .03 + Math.random() * .05, sw: Math.random() * 6.28, pts, curl: false };
     }
-    burst() {
-      const cx = this.w / 2, cy = this.h * 0.42;
-      for (let k = 0; k < 46; k++) {
-        const a = -Math.PI / 2 + (Math.random() - .5) * Math.PI * 1.5, v = 3 + Math.random() * 7;
-        this.f.push(this.make(cx + (Math.random() - .5) * 60, cy + (Math.random() - .5) * 60, Math.cos(a) * v, Math.sin(a) * v));
+    burst(target) {
+      const cr = this.c.getBoundingClientRect();
+      let cx = this.w / 2, cy = this.h * 0.42;
+      if (target) { const r = target.getBoundingClientRect(); cx = r.left - cr.left + r.width / 2; cy = r.top - cr.top + r.height * 0.45; }
+      this.loop();
+      for (let k = 0; k < 54; k++) {
+        const a = -Math.PI / 2 + (Math.random() - .5) * Math.PI * 1.6, v = 3 + Math.random() * 8;
+        const q = this.make(cx + (Math.random() - .5) * 80, cy + (Math.random() - .5) * 50, Math.cos(a) * v, Math.sin(a) * v);
+        if (k % 4 === 0) { q.curl = true; q.s = 10 + Math.random() * 12; q.vr = (Math.random() - .5) * .12; }
+        this.f.push(q);
       }
     }
     loop() {
@@ -153,8 +173,15 @@
           const g = ctx.createLinearGradient(-q.s, -q.s, q.s, q.s);
           const lit = flip > 0;
           g.addColorStop(0, lit ? '#fff3c4' : '#d9b45f'); g.addColorStop(.5, lit ? '#e2bd63' : '#a77d32'); g.addColorStop(1, lit ? '#a57a2c' : '#6e4f1c');
-          ctx.fillStyle = g; ctx.globalAlpha = .92;
-          ctx.beginPath(); q.pts.forEach(([px, py], k) => (k ? ctx.lineTo(px * q.s, py * q.s) : ctx.moveTo(px * q.s, py * q.s))); ctx.closePath(); ctx.fill();
+          ctx.globalAlpha = .92;
+          if (q.curl) {
+            ctx.strokeStyle = g; ctx.lineWidth = 2.4; ctx.lineCap = 'round'; ctx.beginPath();
+            for (let t = 0; t <= 9.5; t += .25) { const rr = q.s * (.12 + t * .1); const px = Math.cos(t) * rr, py = Math.sin(t) * rr * .55 + t * 1.6 - 8; t ? ctx.lineTo(px, py) : ctx.moveTo(px, py); }
+            ctx.stroke();
+          } else {
+            ctx.fillStyle = g;
+            ctx.beginPath(); q.pts.forEach(([px, py], k) => (k ? ctx.lineTo(px * q.s, py * q.s) : ctx.moveTo(px * q.s, py * q.s))); ctx.closePath(); ctx.fill();
+          }
           ctx.restore();
         }
         requestAnimationFrame(step);
