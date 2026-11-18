@@ -17,7 +17,7 @@
     if (!reduce && (el.classList.contains('reveal') || el.classList.contains('meat'))) {
       const sec = el.closest('section'); const cv = sec && sec.querySelector('canvas.leaf');
       const target = el.classList.contains('meat') ? el : el.querySelector('.plate');
-      setTimeout(() => { if (cv && cv._leaf) cv._leaf.burst(target); }, el.classList.contains('meat') ? 1150 : 1000);
+      setTimeout(() => { if (cv && cv._leaf) cv._leaf.burst(el.classList.contains('meat') ? (el.querySelector('.meat__fillet') || target) : target); }, el.classList.contains('meat') ? 2000 : 1000);
     }
   };
   const showIn = () => {

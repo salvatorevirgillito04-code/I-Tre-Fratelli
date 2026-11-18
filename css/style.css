@@ -287,10 +287,16 @@ body.menu-open{overflow:hidden}
 .js-ready .reveal .pedestal{opacity:0;transform:translate(-50%,-30%) scale(.9);transition:opacity 1s .2s var(--ease),transform 1.2s .2s var(--ease)}
 .js-ready .reveal.is-in .pedestal{opacity:1;transform:translate(-50%,-50%)}
 
-.meat{position:relative;z-index:2;width:min(70vw,900px);aspect-ratio:1540/980}
+.meat{position:relative;z-index:2;width:min(58vw,760px);aspect-ratio:1540/980}
 .meat__piece{position:absolute;display:block;transform:translate3d(0,calc((var(--p,.5) - .5) * var(--depth) * -1px),var(--z,0px))}
 .meat__slate{left:0;right:0;bottom:0;--depth:40;--z:0px}
 .meat__oil{left:-3%;top:-4%;width:15%;--depth:180;--z:80px}
+.meat__fillet{left:33%;top:-32%;width:34%;--depth:260;--z:140px;z-index:3}
+.meat__fillet img{filter:drop-shadow(0 50px 40px rgba(0,0,0,.8))}
+.meat__fillet .bob{animation:bobFillet 5.4s ease-in-out infinite}
+@keyframes bobFillet{0%,100%{transform:translateY(0) rotate(calc((var(--p,.5) - .5) * -16deg))}50%{transform:translateY(-16px) rotate(calc((var(--p,.5) - .5) * -16deg + 2deg))}}
+.js-ready .meat__fillet .drop{--r:40deg;transition-delay:.85s;transition-duration:1.6s}
+.meat{margin-top:clamp(120px,15vw,220px)}
 .meat__salt{left:17%;top:6%;width:14%;--depth:120;--z:50px}
 .meat__piece img{display:block;width:100%;height:auto;filter:drop-shadow(0 30px 30px rgba(0,0,0,.65))}
 .meat__slate .bob{animation:bob 6s ease-in-out infinite}
@@ -318,7 +324,8 @@ body.menu-open{overflow:hidden}
   .plate{width:50vw;top:42%}
   .pedestal{width:62vw;height:13vw;top:76%}
   .pedestal__shadow{width:40vw;height:6vw;top:64%}
-  .meat{width:92vw}
+  .meat{width:92vw;margin-top:34vw}
+  .meat__fillet{top:-36%;width:40%;left:30%}
 }
 @media (prefers-reduced-motion: reduce){
   .scene{transform:none}
