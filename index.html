@@ -21,7 +21,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..600;1,6..96,400..500&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
 <link rel="preload" as="image" href="img/sala-sera-1600.webp" imagesrcset="img/sala-sera-800.webp 800w, img/sala-sera-1200.webp 1200w, img/sala-sera-1600.webp 1600w, img/sala-sera-2000.webp 2000w" imagesizes="100vw">
 <style>.intro{display:none}</style>
-<link rel="stylesheet" href="css/style.css?v=202611180033g">
+<link rel="stylesheet" href="css/style.css?v=202611180041r">
 <script>(function(d){d.classList.add('js');try{if(sessionStorage.getItem('itf-intro'))d.classList.add('intro-seen');sessionStorage.setItem('itf-intro','1')}catch(e){}})(document.documentElement)</script>
 <script type="application/ld+json">
 {
@@ -99,7 +99,6 @@
   <div class="hero__bg" aria-hidden="true">
     <img src="img/sala-sera-1600.webp" srcset="img/sala-sera-800.webp 800w, img/sala-sera-1200.webp 1200w, img/sala-sera-1600.webp 1600w, img/sala-sera-2000.webp 2000w" sizes="100vw" alt="" fetchpriority="high">
   </div>
-  <canvas class="leaf" data-leaf="drift" aria-hidden="true"></canvas>
   <div class="hero__content">
     <p class="hero__kicker" data-rise>Ristorante · Via di Giù 56 · Lugo</p>
     <h1 class="hero__title">
@@ -138,21 +137,16 @@
 
 <!-- RIVELAZIONE: il piatto cade e resta sospeso sul piedistallo, tra le foglie d'oro -->
 <section class="reveal" data-reveal data-progress aria-labelledby="reveal-title">
-  <canvas class="leaf" data-leaf="burst" aria-hidden="true"></canvas>
   <div class="reveal__card">
     <div class="reveal__stage scene" data-tilt>
       <p class="reveal__giant" aria-hidden="true"><span>Il tempo</span><span>giusto</span></p>
-      <span class="pedestal" aria-hidden="true"></span>
-      <span class="pedestal__shadow" aria-hidden="true"></span>
       <div class="plate" aria-hidden="true">
-        <div class="drop"><div class="bob">
-          <svg class="steam" viewBox="0 0 200 160" preserveAspectRatio="none">
-            <path d="M60 160 C40 120 80 100 60 60 C45 30 70 15 62 0"/>
-            <path d="M100 160 C80 125 120 95 100 55 C85 25 112 12 104 0"/>
-            <path d="M140 160 C120 120 160 100 140 62 C126 32 150 16 144 0"/>
-          </svg>
-          <img class="plate__img" src="img/cut-tagliatelle-1000.webp" srcset="img/cut-tagliatelle-600.webp 600w, img/cut-tagliatelle-1000.webp 1000w" sizes="(max-width: 760px) 50vw, 30vw" alt="" width="1000" height="1026">
-        </div></div>
+        <span class="plate__shadow"></span>
+        <div class="plate__in">
+          <div class="dish"><img class="dish__img" src="img/piatto-vuoto.webp" alt="" width="1000" height="1000"></div>
+          <div class="nest"><div class="nest__in"><img class="nest__img" src="img/cut-tagliatelle-1000.webp" srcset="img/cut-tagliatelle-600.webp 600w, img/cut-tagliatelle-1000.webp 1000w" sizes="(max-width: 760px) 50vw, 28vw" alt="" width="1000" height="1026"></div></div>
+          <canvas class="steam"></canvas>
+        </div>
       </div>
     </div>
     <div class="wrap reveal__foot">
@@ -166,7 +160,6 @@
 
 <!-- LE CARNI: tagliere, olio e sale cadono e atterrano, poi fluttuano -->
 <section class="dissect" id="carni" data-progress aria-labelledby="carni-title">
-  <canvas class="leaf" data-leaf="burst" aria-hidden="true"></canvas>
   <div class="wrap">
     <div class="brace__head rise" data-reveal>
       <div><p class="eyebrow">Le carni</p>
@@ -176,10 +169,9 @@
   </div>
   <div class="dissect__stage">
     <p class="dissect__giant" aria-hidden="true">Precisione</p>
-    <div class="meat scene" data-reveal data-tilt data-progress role="img" aria-label="Filetto di manzo alla griglia sospeso sopra la tagliata su tagliere di ardesia, con olio e sale">
+    <div class="meat scene" data-reveal data-tilt data-progress role="img" aria-label="Tagliata di manzo al rosmarino su tagliere di ardesia, con olio e sale">
       <span class="meat__shadow" aria-hidden="true"></span>
       <span class="meat__piece meat__slate"><span class="drop"><img class="bob" loading="lazy" decoding="async" src="img/cut-tagliata-1200.webp" srcset="img/cut-tagliata-700.webp 700w, img/cut-tagliata-1200.webp 1200w" sizes="(max-width: 760px) 90vw, 62vw" alt=""></span></span>
-      <span class="meat__piece meat__fillet"><span class="drop"><img class="bob" loading="lazy" decoding="async" src="img/cut-fetta-900.webp" srcset="img/cut-fetta-500.webp 500w, img/cut-fetta-900.webp 900w" sizes="(max-width: 760px) 50vw, 30vw" alt=""></span></span>
       <span class="meat__piece meat__oil"><span class="drop"><img class="bob" loading="lazy" decoding="async" src="img/cut-oil.webp" alt=""></span></span>
       <span class="meat__piece meat__salt"><span class="drop"><img class="bob" loading="lazy" decoding="async" src="img/cut-salt.webp" alt=""></span></span>
     </div>
@@ -302,6 +294,6 @@
   <a href="https://wa.me/393356780073?text=Buongiorno%2C%20vorrei%20prenotare%20un%20tavolo%20da%20I%20Tre%20Fratelli." class="is-main" target="_blank" rel="noopener">Prenota su WhatsApp</a>
 </div>
 
-<script src="js/main.js?v=202611180033g" defer></script>
+<script src="js/main.js?v=202611180041r" defer></script>
 </body>
 </html>

@@ -108,19 +108,8 @@ body.menu-open{overflow:hidden}
 .js-ready .hero__title .line [data-rise]{transform:translateY(105%)}
 .js-ready .is-loaded .hero__title .line [data-rise]{transform:none}
 
-.plate{position:absolute;z-index:2;left:50%;top:44%;width:min(30vw,390px);aspect-ratio:1;transform:translate(-50%,-50%);pointer-events:none;transform-style:preserve-3d}
-.plate__img{display:block;width:100%;height:auto;filter:drop-shadow(0 40px 30px rgba(0,0,0,.75));transition:transform 2.2s var(--ease), opacity 1.2s;will-change:transform}
-.js-ready .reveal .plate__img{transform:rotate(-70deg) scale(.7);opacity:0}
-.js-ready .reveal.is-in .plate__img{opacity:1;transform:rotate(var(--plate-rot,0deg)) scale(1)}
-.plate.is-spinning .plate__img{transition:transform .2s linear}
-.plate::before{content:"";position:absolute;inset:0;border-radius:50%;background:transparent;opacity:0;transform:scale(.7);transition:opacity 1.2s .2s, transform 2.2s var(--ease)}
-.is-loaded .plate::before{opacity:1;transform:scale(1)}
-.steam{position:absolute;left:30%;top:-18%;width:40%;height:34%;overflow:visible;z-index:2}
-.steam path{fill:none;stroke:rgba(255,255,255,.35);stroke-width:5;stroke-linecap:round;filter:blur(5px);stroke-dasharray:60 240;animation:steam 4.2s linear infinite;opacity:0}
-.steam path:nth-child(2){animation-delay:1.3s}
-.steam path:nth-child(3){animation-delay:2.6s}
-@keyframes steam{0%{stroke-dashoffset:300;opacity:0}20%{opacity:.9}100%{stroke-dashoffset:0;opacity:0}}
-.hero__scroll{position:absolute;z-index:3;left:var(--gutter);bottom:34px;width:48px;height:48px;display:grid;place-items:center}
+.plate{position:absolute;z-index:2;left:50%;top:50%;width:min(32vw,420px);aspect-ratio:1;transform:translate(-50%,-50%);pointer-events:none;transform-style:preserve-3d}
+.js-ready .reveal.js-ready .reveal.is-in.is-loaded.hero__scroll{position:absolute;z-index:3;left:var(--gutter);bottom:34px;width:48px;height:48px;display:grid;place-items:center}
 .hero__scroll span{width:1px;height:44px;background:rgba(239,231,218,.25);position:relative;overflow:hidden}
 .hero__scroll span::after{content:"";position:absolute;left:0;top:-50%;width:1px;height:50%;background:var(--brass);animation:drip 2s var(--ease) infinite}
 @keyframes drip{to{top:100%}}
@@ -227,7 +216,6 @@ body.menu-open{overflow:hidden}
 
 /* RIVELAZIONE */
 .reveal{position:relative;overflow:hidden;background:var(--cream);padding:clamp(70px,8vw,120px) 0 clamp(80px,9vw,130px);border-top:1px solid rgba(201,167,107,.14)}
-.leaf{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:3}
 .reveal__stage{position:relative;height:clamp(420px,62vw,760px)}
 .reveal__giant{position:absolute;inset:0;margin:0;display:flex;flex-direction:column;align-items:center;justify-content:center;font-family:var(--serif);font-weight:400;text-transform:uppercase;font-size:clamp(70px,16.5vw,270px);line-height:.88;letter-spacing:.01em;color:transparent;-webkit-text-stroke:1px rgba(201,167,107,.42);white-space:nowrap;z-index:1}
 .reveal__giant span{display:block}
@@ -254,8 +242,7 @@ body.menu-open{overflow:hidden}
 @media (prefers-reduced-motion: reduce){
   .reveal-on .rise,.reveal-on .rise-item{opacity:1;transform:none}
   .reveal-on   .js-ready .reveal .reveal__giant span{opacity:1;transform:none}
-  .js-ready .reveal .plate__img{opacity:1;transform:none}
-}
+  .js-ready .reveal}
 
 /* ANIMAZIONI DI SEZIONE */
 .reveal-on .rise{opacity:0;transform:translateY(34px);transition:opacity 1.1s var(--ease),transform 1.3s var(--ease)}
@@ -274,29 +261,15 @@ body.menu-open{overflow:hidden}
 /* SCENE: CADUTA, SOSPENSIONE, INCLINAZIONE */
 .scene{--mx:0;--my:0;transform:perspective(1400px) rotateX(calc(var(--my) * -5deg)) rotateY(calc(var(--mx) * 7deg));transform-style:preserve-3d;transition:transform .6s cubic-bezier(.2,.7,.2,1)}
 .drop,.bob{display:block;width:100%;height:100%}
-.pedestal{position:absolute;left:50%;top:74%;width:min(34vw,440px);height:min(7.5vw,96px);transform:translate(-50%,-50%);border-radius:50%;z-index:1;
-  background:radial-gradient(120% 140% at 50% 0%,#3a352f 0%,#1d1a17 38%,#0c0b0a 70%);box-shadow:inset 0 3px 0 rgba(201,167,107,.25),inset 0 -14px 24px rgba(0,0,0,.7),0 24px 40px rgba(0,0,0,.6)}
-.pedestal::after{content:"";position:absolute;left:50%;top:52%;width:94%;height:100%;transform:translateX(-50%);border-radius:50%;background:linear-gradient(#141210,#070606);z-index:-1}
-.pedestal__shadow{position:absolute;left:50%;top:60%;width:min(22vw,290px);height:min(3vw,40px);transform:translate(-50%,-50%);border-radius:50%;background:radial-gradient(closest-side,rgba(0,0,0,.7),rgba(0,0,0,0));filter:blur(6px);z-index:1;animation:shadowBreath 5s ease-in-out infinite}
-@keyframes shadowBreath{50%{transform:translate(-50%,-50%) scale(.82);opacity:.7}}
 @keyframes bob{50%{transform:translateY(-14px) rotate(-.6deg)}}
 @keyframes bobSmall{50%{transform:translateY(-9px) rotate(1.2deg)}}
-.plate .bob{animation:bob 5s ease-in-out infinite}
-.js-ready .reveal .plate .drop{transform:translateY(-75vh) rotate(-25deg);opacity:0;transition:transform 1.5s cubic-bezier(.25,1.35,.4,1),opacity .5s}
 .js-ready .reveal.is-in .plate .drop{transform:none;opacity:1}
-.js-ready .reveal .pedestal{opacity:0;transform:translate(-50%,-30%) scale(.9);transition:opacity 1s .2s var(--ease),transform 1.2s .2s var(--ease)}
-.js-ready .reveal.is-in .pedestal{opacity:1;transform:translate(-50%,-50%)}
-
+.js-ready .reveal.js-ready .reveal.is-in
 .meat{position:relative;z-index:2;width:min(58vw,760px);aspect-ratio:1540/980}
 .meat__piece{position:absolute;display:block;transform:translate3d(0,calc((var(--p,.5) - .5) * var(--depth) * -1px),var(--z,0px))}
 .meat__slate{left:0;right:0;bottom:0;--depth:40;--z:0px}
 .meat__oil{left:-3%;top:-4%;width:15%;--depth:180;--z:80px}
-.meat__fillet{left:33%;top:-32%;width:34%;--depth:260;--z:140px;z-index:3}
-.meat__fillet img{filter:drop-shadow(0 50px 40px rgba(0,0,0,.8))}
-.meat__fillet .bob{animation:bobFillet 5.4s ease-in-out infinite}
-@keyframes bobFillet{0%,100%{transform:translateY(0) rotate(calc((var(--p,.5) - .5) * -16deg))}50%{transform:translateY(-16px) rotate(calc((var(--p,.5) - .5) * -16deg + 2deg))}}
-.js-ready .meat__fillet .drop{--r:40deg;transition-delay:.85s;transition-duration:1.6s}
-.meat{margin-top:clamp(120px,15vw,220px)}
+.js-ready
 .meat__salt{left:17%;top:6%;width:14%;--depth:120;--z:50px}
 .meat__piece img{display:block;width:100%;height:auto;filter:drop-shadow(0 30px 30px rgba(0,0,0,.65))}
 .meat__slate .bob{animation:bob 6s ease-in-out infinite}
@@ -321,19 +294,32 @@ body.menu-open{overflow:hidden}
   .dissect{z-index:4;border-radius:32px 32px 0 0;box-shadow:0 -50px 90px rgba(0,0,0,.75);border-top:1px solid rgba(201,167,107,.25)}
 }
 @media (max-width:760px){
-  .plate{width:50vw;top:42%}
-  .pedestal{width:62vw;height:13vw;top:76%}
-  .pedestal__shadow{width:40vw;height:6vw;top:64%}
-  .meat{width:92vw;margin-top:34vw}
-  .meat__fillet{top:-36%;width:40%;left:30%}
+  .plate{width:66vw}
+  .meat{width:92vw}
 }
 @media (prefers-reduced-motion: reduce){
   .scene{transform:none}
-  .bob,.pedestal__shadow,.meat__shadow{animation:none!important}
-  .js-ready .reveal .plate .drop,.js-ready .meat .drop{transform:none;opacity:1}
-  .js-ready .reveal .pedestal,.js-ready .meat .meat__shadow{opacity:1;transform:translate(-50%,-50%)}
-  .js-ready .meat .meat__shadow{transform:none}
+  .bob,  .js-ready .reveal  .js-ready .meat .meat__shadow{transform:none}
 }
+
+/* PASTA: IMPIATTAMENTO */
+.plate__shadow{position:absolute;left:4%;right:4%;top:10%;bottom:-6%;border-radius:50%;background:radial-gradient(closest-side,rgba(0,0,0,.85),rgba(0,0,0,0) 78%);filter:blur(14px);transform:translateY(6%)}
+.plate__in{position:absolute;inset:0;transform-style:preserve-3d}
+.dish{position:absolute;inset:0;border-radius:50%;transform:rotate(var(--plate-rot,0deg));box-shadow:0 30px 50px -18px rgba(0,0,0,.9)}
+.dish__img{display:block;width:100%;height:100%;border-radius:50%}
+.nest{position:absolute;left:11.1%;top:8.8%;width:77.2%;transform:translateY(calc(var(--lift,0px) * -1)) rotate(calc(var(--plate-rot,0deg) * -.5)) scale(calc(1 + var(--lift-n,0) * .05));transition:transform .25s linear}
+.nest__img{display:block;width:100%;height:auto;filter:drop-shadow(0 calc(4px + var(--lift,0px) * .7) calc(6px + var(--lift,0px) * .5) rgba(0,0,0,calc(.35 + var(--lift-n,0) * .25)))}
+.steam{position:absolute;left:-10%;width:120%;bottom:45%;height:120%;pointer-events:none}
+@keyframes plateServe{0%{opacity:0;transform:translateY(22%) scale(.82) rotate(-38deg)}55%{opacity:1}100%{opacity:1;transform:none}}
+@keyframes nestPlace{0%{opacity:0;transform:translateY(-140%) rotate(220deg) scale(1.25)}12%{opacity:1}62%{transform:translateY(3%) rotate(-6deg) scale(1.02,.94)}78%{transform:translateY(-2.5%) rotate(2deg) scale(.99,1.02)}100%{opacity:1;transform:none}}
+@keyframes shadowIn{from{opacity:0;transform:translateY(6%) scale(.6)}to{opacity:1;transform:translateY(6%) scale(1)}}
+.js-ready .reveal .plate__in,.js-ready .reveal .nest__in,.js-ready .reveal .plate__shadow{opacity:0}
+.js-ready .reveal.is-in .plate__in{animation:plateServe 1.5s cubic-bezier(.2,.8,.2,1) .15s both}
+.js-ready .reveal.is-in .plate__shadow{animation:shadowIn 1.4s cubic-bezier(.2,.8,.2,1) .15s both}
+.js-ready .reveal.is-in .nest__in{animation:nestPlace 1.7s cubic-bezier(.3,.7,.3,1) .95s both}
+.plate::after{content:"";position:absolute;inset:-3%;border-radius:50%;border:1px solid rgba(201,167,107,.75);opacity:0;pointer-events:none}
+@keyframes ring{0%{opacity:0;transform:scale(.92)}25%{opacity:.9}100%{opacity:0;transform:scale(1.32)}}
+.js-ready .reveal.is-in .plate::after{animation:ring 1.6s cubic-bezier(.2,.7,.2,1) 2.15s both}
 
 /* RESPONSIVE */
 @media (max-width: 1080px){
@@ -389,7 +375,6 @@ body.menu-open{overflow:hidden}
   html{scroll-behavior:auto}
   *,*::before,*::after{animation:none!important;transition:none!important}
   [data-rise],.hero__title .line [data-rise]{opacity:1;transform:none}
-  .plate__img,.plate::before{opacity:1;transform:none}
   .hero__bg img{transform:none}
   .reveal-on   .reveal-on [data-reveal].ph img{clip-path:none;transform:none}
   .js .intro{display:none!important}
