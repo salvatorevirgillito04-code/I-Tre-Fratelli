@@ -37,6 +37,11 @@
     window.addEventListener('load', showIn);
   }
 
+  /* ---------- Precarica le foto in sottofondo appena la pagina e' pronta ---------- */
+  const warm = () => $$('img[loading="lazy"]').forEach(img => { img.loading = 'eager'; });
+  if (document.readyState === 'complete') setTimeout(warm, 300);
+  else window.addEventListener('load', () => setTimeout(warm, 300), { once: true });
+
   /* ---------- Sipario d'apertura e entrata hero ---------- */
   $$('.hero [data-rise]').forEach((el, i) => el.style.setProperty('--i', i));
   const intro = $('.intro');
