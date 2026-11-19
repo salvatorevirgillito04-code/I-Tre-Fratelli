@@ -331,8 +331,8 @@ body.menu-open{overflow:hidden}
 
 .signature,.menu,.hours,.visit{position:relative;z-index:4}
 
-.menu__room{margin:clamp(56px,7vw,100px) auto 0;max-width:880px;aspect-ratio:3/2;outline:1px solid rgba(201,167,107,.3);outline-offset:8px}
-.menu__room img{object-position:50% 64%;filter:saturate(.85)}
+.menu__room{margin:clamp(56px,7vw,100px) auto 0;max-width:560px;aspect-ratio:4/5;outline:1px solid rgba(201,167,107,.3);outline-offset:8px}
+.menu__room img{object-position:50% 50%}
 @media (max-width:760px){.menu__room{aspect-ratio:4/5;margin-top:48px;outline-offset:5px}.menu{padding-bottom:72px}.hours{padding-top:72px}}
 
 /* RESPONSIVE */
