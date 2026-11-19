@@ -108,7 +108,7 @@
         const rr = revealSec.getBoundingClientRect();
         const pr = clamp((vh - rr.top) / (vh + rr.height));
         const lift = Math.sin(pr * Math.PI);
-        plateBox.style.setProperty('--plate-rot', ((pr - .5) * 70).toFixed(2) + 'deg');
+        plateBox.style.setProperty('--plate-rot', ((pr - .5) * 40).toFixed(2) + 'deg');
         plateBox.style.setProperty('--lift', (Math.pow(lift, 3) * 46).toFixed(1) + 'px');
         plateBox.style.setProperty('--lift-n', Math.pow(lift, 3).toFixed(3));
       }

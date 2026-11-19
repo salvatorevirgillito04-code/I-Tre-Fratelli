@@ -265,7 +265,8 @@ body.menu-open{overflow:hidden}
 @keyframes bobSmall{50%{transform:translateY(-9px) rotate(1.2deg)}}
 .js-ready .reveal.is-in .plate .drop{transform:none;opacity:1}
 .js-ready .reveal.js-ready .reveal.is-in
-.meat{position:relative;z-index:2;width:min(58vw,760px);aspect-ratio:1540/980}
+.meat{position:relative;z-index:2;width:min(58vw,760px)}
+.meat::before{content:"";display:block;padding-top:63.6%}
 .meat__piece{position:absolute;display:block;transform:translate3d(0,calc((var(--p,.5) - .5) * var(--depth) * -1px),var(--z,0px))}
 .meat__slate{left:0;right:0;bottom:0;--depth:40;--z:0px}
 .meat__oil{left:-3%;top:-4%;width:15%;--depth:180;--z:80px}
@@ -296,6 +297,8 @@ body.menu-open{overflow:hidden}
 @media (max-width:760px){
   .plate{width:66vw}
   .meat{width:92vw}
+  .meat__piece{transform:none}
+  .scene{transform:none}
 }
 @media (prefers-reduced-motion: reduce){
   .scene{transform:none}
@@ -304,12 +307,11 @@ body.menu-open{overflow:hidden}
 
 /* PASTA: IMPIATTAMENTO */
 .plate__shadow{position:absolute;left:4%;right:4%;top:10%;bottom:-6%;border-radius:50%;background:radial-gradient(closest-side,rgba(0,0,0,.85),rgba(0,0,0,0) 78%);filter:blur(14px);transform:translateY(6%)}
-.plate__in{position:absolute;inset:0;transform-style:preserve-3d}
-.dish{position:absolute;inset:0;border-radius:50%;transform:rotate(var(--plate-rot,0deg));box-shadow:0 30px 50px -18px rgba(0,0,0,.9)}
+.plate__in{position:absolute;inset:0;rotate:var(--plate-rot,0deg)}
+.dish{position:absolute;inset:0;border-radius:50%;box-shadow:0 30px 50px -18px rgba(0,0,0,.9)}
 .dish__img{display:block;width:100%;height:100%;border-radius:50%}
-.nest{position:absolute;left:11.1%;top:8.8%;width:77.2%;transform:translateY(calc(var(--lift,0px) * -1)) rotate(calc(var(--plate-rot,0deg) * -.5)) scale(calc(1 + var(--lift-n,0) * .05));transition:transform .25s linear}
-.nest__img{display:block;width:100%;height:auto;filter:drop-shadow(0 calc(4px + var(--lift,0px) * .7) calc(6px + var(--lift,0px) * .5) rgba(0,0,0,calc(.35 + var(--lift-n,0) * .25)))}
-.steam{position:absolute;left:-10%;width:120%;bottom:45%;height:120%;pointer-events:none}
+.nest{position:absolute;left:11.1%;top:8.8%;width:77.2%}
+.nest__img{display:block;width:100%;height:auto;filter:drop-shadow(0 4px 6px rgba(0,0,0,.35))}
 @keyframes plateServe{0%{opacity:0;transform:translateY(22%) scale(.82) rotate(-38deg)}55%{opacity:1}100%{opacity:1;transform:none}}
 @keyframes nestPlace{0%{opacity:0;transform:translateY(-140%) rotate(220deg) scale(1.25)}12%{opacity:1}62%{transform:translateY(3%) rotate(-6deg) scale(1.02,.94)}78%{transform:translateY(-2.5%) rotate(2deg) scale(.99,1.02)}100%{opacity:1;transform:none}}
 @keyframes shadowIn{from{opacity:0;transform:translateY(6%) scale(.6)}to{opacity:1;transform:translateY(6%) scale(1)}}
