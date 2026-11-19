@@ -310,18 +310,26 @@ body.menu-open{overflow:hidden}
 .plate__in{position:absolute;inset:0;rotate:var(--plate-rot,0deg)}
 .dish{position:absolute;inset:0;border-radius:50%;box-shadow:0 30px 50px -18px rgba(0,0,0,.9)}
 .dish__img{display:block;width:100%;height:100%;border-radius:50%}
-.nest{position:absolute;left:11.1%;top:8.8%;width:77.2%}
-.nest__img{display:block;width:100%;height:auto;filter:drop-shadow(0 4px 6px rgba(0,0,0,.35))}
-@keyframes plateServe{0%{opacity:0;transform:translateY(22%) scale(.82) rotate(-38deg)}55%{opacity:1}100%{opacity:1;transform:none}}
-@keyframes nestPlace{0%{opacity:0;transform:translateY(-140%) rotate(220deg) scale(1.25)}12%{opacity:1}62%{transform:translateY(3%) rotate(-6deg) scale(1.02,.94)}78%{transform:translateY(-2.5%) rotate(2deg) scale(.99,1.02)}100%{opacity:1;transform:none}}
+@keyframes plateServe{0%{opacity:0;transform:translateY(26%) scale(.78) rotate(-50deg)}55%{opacity:1}80%{transform:translateY(-1.5%) scale(1.015) rotate(3deg)}100%{opacity:1;transform:none}}
 @keyframes shadowIn{from{opacity:0;transform:translateY(6%) scale(.6)}to{opacity:1;transform:translateY(6%) scale(1)}}
-.js-ready .reveal .plate__in,.js-ready .reveal .nest__in,.js-ready .reveal .plate__shadow{opacity:0}
-.js-ready .reveal.is-in .plate__in{animation:plateServe 1.5s cubic-bezier(.2,.8,.2,1) .15s both}
+.js-ready .reveal .plate__in,.js-ready .reveal .js-ready .reveal.is-in .plate__in{animation:plateServe 1.5s cubic-bezier(.2,.8,.2,1) .15s both}
 .js-ready .reveal.is-in .plate__shadow{animation:shadowIn 1.4s cubic-bezier(.2,.8,.2,1) .15s both}
-.js-ready .reveal.is-in .nest__in{animation:nestPlace 1.7s cubic-bezier(.3,.7,.3,1) .95s both}
-.plate::after{content:"";position:absolute;inset:-3%;border-radius:50%;border:1px solid rgba(201,167,107,.75);opacity:0;pointer-events:none}
+.js-ready .reveal.is-in .plate::after{content:"";position:absolute;inset:-3%;border-radius:50%;border:1px solid rgba(201,167,107,.75);opacity:0;pointer-events:none}
 @keyframes ring{0%{opacity:0;transform:scale(.92)}25%{opacity:.9}100%{opacity:0;transform:scale(1.32)}}
-.js-ready .reveal.is-in .plate::after{animation:ring 1.6s cubic-bezier(.2,.7,.2,1) 2.15s both}
+.js-ready .reveal.is-in .plate::after{animation:ring 1.6s cubic-bezier(.2,.7,.2,1) 1.4s both}
+
+/* I PIATTI DELLA CASA */
+.signature{background:var(--cream);padding:clamp(96px,11vw,160px) 0;border-top:1px solid rgba(201,167,107,.14)}
+.sig__grid{display:grid;grid-template-columns:1.35fr 1fr;gap:clamp(28px,4vw,64px);align-items:start}
+.sig__item--low{margin-top:clamp(60px,10vw,160px)}
+.sig__ph{aspect-ratio:4/3;outline:1px solid rgba(201,167,107,.3);outline-offset:8px}
+.sig__item--low .sig__ph{aspect-ratio:4/5}
+.sig__name{font-size:clamp(22px,2vw,28px);margin:30px 0 8px}
+.sig__desc{font-family:var(--serif);font-style:italic;color:var(--ink-soft);margin:0;max-width:30em}
+.reveal-on .sig__name.rise{transition-delay:.2s}.reveal-on .sig__desc.rise{transition-delay:.32s}
+@media (max-width:760px){.sig__grid{grid-template-columns:1fr}.sig__item--low{margin-top:24px}.sig__item--low .sig__ph{aspect-ratio:4/3}.sig__ph{outline-offset:5px}}
+
+.signature,.menu,.hours,.visit{position:relative;z-index:4}
 
 /* RESPONSIVE */
 @media (max-width: 1080px){
